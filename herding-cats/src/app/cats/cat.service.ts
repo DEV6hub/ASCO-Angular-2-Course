@@ -1,41 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 
 import { Cat } from './cat';
+
+const matilda = new Cat('Matilda', 'Calico', 'Loves window sitting and snuggles', new Date(2016, 0, 25));
+matilda.id = 1;
+
+const boots = new Cat('Boots', 'Tabby', 'Likes to perch in high locations', new Date(2013, 8, 7));
+boots.id = 2;
+
+const fuzzy = new Cat('Fuzzy', 'Persian', 'Thinks she is the queen of all she sees', new Date(2006, 4, 20));
+fuzzy.id = 3;
 
 @Injectable()
 export class CatService {
   favouriteCat: Cat;
-  private apiBase = 'http://localhost:9000';
+  private cats = [matilda, boots, fuzzy];
+  private idCounter = 4;
 
-  constructor(private http: Http) { }
-
-  getCatList(): Observable<Cat[]> {
-    return this.http.get(`${this.apiBase}/cats`)
-      .map(response => response.json() as Cat[]);
+  getCatList(): Cat[] {
+    return this.cats;
   }
 
-  getCat(id: number): Observable<Cat> {
-    return this.http.get(`${this.apiBase}/cats/${id}`)
-      .map(response => response.json() as Cat);
+  getCat(id: number): Cat {
+    return this.cats.find(cat => cat.id === id);
   }
 
-  saveCat(cat: Cat): Promise<Cat> {
-    if (cat.id) {
-      return this.http.put(`${this.apiBase}/cats/${cat.id}`, JSON.stringify(cat))
-        .toPromise()
-        .then(response => response.json() as Cat);
+  saveCat(unsavedCat: Cat): Cat {
+    if (unsavedCat.id) {
+      let currentCat = this.cats.find(cat => cat.id === unsavedCat.id);
+      Object.assign(currentCat, unsavedCat);
+      return currentCat;
     } else {
-      return this.http.post(`${this.apiBase}/cats`, JSON.stringify(cat))
-        .toPromise()
-        .then(response => response.json() as Cat);
+      unsavedCat.id = this.idCounter++;
+      this.cats.push(unsavedCat);
+      return unsavedCat;
     }
   }
 
-  removeCat(cat: Cat): Promise<void> {
-    return this.http.delete(`${this.apiBase}/cats/${cat.id}`)
-      .toPromise()
-      .then(response => response.json());
+  removeCat(cat: Cat) {
+    const index = this.cats.findIndex(c => c.id === cat.id);
+    this.cats.splice(index, 1);
   }
 }

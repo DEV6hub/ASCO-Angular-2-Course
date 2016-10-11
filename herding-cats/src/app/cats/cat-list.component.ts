@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-
-import { Cat } from './cat';
-import { CatService } from './cat.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {Cat} from "./cat";
+import {CatService} from "./cat.service";
 
 @Component({
   selector: 'cat-list',
@@ -11,7 +9,7 @@ import { CatService } from './cat.service';
 })
 export class CatListComponent implements OnInit {
   favouriteCat: Cat;
-  cats: Observable<Cat[]>;
+  cats: Cat[];
 
   constructor(
     private router: Router,
