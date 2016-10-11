@@ -1,7 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-import { Cat } from './cat';
-import { CatYearsPipe } from './cat-years.pipe';
+import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Cat} from "./cat";
 
 @Component({
   selector: 'cat-detail',

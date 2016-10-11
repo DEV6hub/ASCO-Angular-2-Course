@@ -1,0 +1,25 @@
+<form [formGroup]="dogForm" (ngSubmit)="saveDog()" novalidate>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" [(ngModel)]="dog.name" #name="ngModel">
+        <div *ngIf="!name.valid && name.touched">Please fill in a name.</div>
+    </div>
+    <div>
+        <label for="type">Type</label>
+        <input type="text" id="type" formControlName="type" [(ngModel)]="dog.type">
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <input type="text" id="description" formControlName="description" [(ngModel)]="dog.description">
+    </div>
+    <div>
+        <label for="birthday">Birthday</label>
+        <input type="date" id="birthday" formControlName="birthday" [ngModel]="birthdayForInput()" (ngModelChange)="setBirthday($event)">
+    </div>
+    <div>
+        <button type="submit" [disabled]="!dogForm.valid">Save Dog</button>
+    </div>
+</form>
+<div *ngIf="dog.id">
+    <button (click)="removeDog()">Delete Dog</button>
+</div>
