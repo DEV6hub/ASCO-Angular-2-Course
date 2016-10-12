@@ -13,7 +13,7 @@ bowser.id = 3;
 
 @Injectable()
 export class DogService {
-	favouriteDog: Dog;
+	favouriteDog: Dog = spot;
 	private dogs = [spot, blue, bowser];
 	private idCounter = 4;
 	

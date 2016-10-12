@@ -1,8 +1,10 @@
-<h3>{{dog.name}}</h3>
-<p>Type: {{dog.type}}</p>
-<p>Description: {{dog.description}}</p>
-<p>Birthday: {{dog.birthday | date}}</p>
-<p>Age in dog Years: {{dog.birthday | dogYears}}</p>
+<div *ngIf="dog">
+    <a [routerLink]="['/dogs']">Back to list of dogs</a>
+    <h3>{{dog.name}} <span *ngIf="isFavourite()">is my favourite!</span></h3>
+    <p>Type: {{dog.type}}</p>
+    <p>Description: {{dog.description}}</p>
+    <p>Birthday: {{dog.birthday | date}}</p>
+    <p>Age in Dog Years: {{dog.birthday | dogYears}}</p>
 
-<button (click)="selectFavourite()">Select Favourite</button>
-<button (click)="editDog()">Edit dog</button>
+    <button (click)="selectFavourite()">Select Favourite</button>
+</div>

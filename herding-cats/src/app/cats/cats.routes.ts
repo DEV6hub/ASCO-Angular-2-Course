@@ -11,7 +11,7 @@ export const catRoutes: Routes = [
     component: CatsComponent,
     children: [
       { path: ':id', component: CatDetailComponent },
-      { path: '', component: CatListComponent }
+      { path: '', component: CatListComponent, pathMatch: "full" }
     ]
   }
 ];

@@ -24,9 +24,4 @@ export class DogListComponent implements OnInit {
   selectDog(dog: Dog) {
     this.router.navigate(['dogs', dog.id]);
   }
-
-  addDog() {
-    this.router.navigate(['dogs', 'new']);
-  }
-
 }

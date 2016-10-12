@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { CatService } from './cat.service';
+import {Component} from "@angular/core";
 
 @Component({
-  template: '<router-outlet></router-outlet>',
-  providers: [CatService]
+  template: '<router-outlet></router-outlet>'
 })
 export class CatsComponent {}

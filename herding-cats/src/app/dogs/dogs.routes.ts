@@ -1,11 +1,10 @@
-import {Routes, RouterModule} from '@angular/router';
-
-import { DogsComponent } from './dogs.component';
+import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 import {DogDetailComponent} from "./dog-detail.component";
 import {DogListComponent} from "./dog-list.component";
+import {DogsComponent} from "./dogs.component";
 
-export const catRoutes: Routes = [
+export const dogRoutes: Routes = [
   {
     path: '',
     component: DogsComponent,
@@ -17,4 +16,4 @@ export const catRoutes: Routes = [
   }
 ];
 
-export const dogRouting: ModuleWithProviders = RouterModule.forChild(catRoutes);
+export const dogRouting: ModuleWithProviders = RouterModule.forChild(dogRoutes);

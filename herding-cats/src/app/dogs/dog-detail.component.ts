@@ -1,20 +1,28 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component} from "@angular/core";
 import {Dog} from "./dog";
+import {ActivatedRoute} from "@angular/router";
+import {DogService} from "./dog.service";
 
 @Component({
 	selector: 'dog-detail',
 	template: require('./dog-detail.component.html')
 })
 export class DogDetailComponent {
-	@Input() dog: Dog;
-	@Output() isFavourite = new EventEmitter<Dog>();
-	@Output() edit = new EventEmitter<Dog>();
+	dog: Dog;
 	
-	selectFavourite() {
-		this.isFavourite.emit(this.dog);
+	constructor(private route: ActivatedRoute, private service: DogService) {
+		let id: number = parseInt(route.snapshot.params["id"]);
+		if ( isNaN(id) )
+			return;
+		
+		this.dog = service.getDog(id);
 	}
 	
-	editDog() {
-		this.edit.emit(this.dog);
+	isFavourite (): boolean {
+		return this.service.favouriteDog === this.dog;
+	}
+	
+	selectFavourite() {
+		this.service.favouriteDog = this.dog;
 	}
 }

@@ -25,8 +25,4 @@ export class CatListComponent implements OnInit {
     this.router.navigate(['cats', cat.id]);
   }
 
-  addCat() {
-    this.router.navigate(['cats', 'new']);
-  }
-
 }
