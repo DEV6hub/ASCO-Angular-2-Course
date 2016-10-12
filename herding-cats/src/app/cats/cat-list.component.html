@@ -3,3 +3,5 @@
 <ul>
   <li *ngFor="let cat of cats" (click)="selectCat(cat)">{{cat.name}}</li>
 </ul>
+
+<a [routerLink]="'/'">Home</a>

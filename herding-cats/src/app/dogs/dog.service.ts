@@ -8,13 +8,13 @@ spot.id = 1;
 const blue = new Dog('Blue', 'German Shepherd', 'Loves to play', new Date(2011, 10, 5));
 blue.id = 2;
 
-const bowser = new Dog('Bowser', 'Saint Bernard', 'slobbers everywhere', new Date(2006, 4, 20));
-bowser.id = 3;
+const yips = new Dog('Yips', 'Chihuahua', 'lives in a purse', new Date(2006, 4, 20));
+yips.id = 3;
 
 @Injectable()
 export class DogService {
 	favouriteDog: Dog = spot;
-	private dogs = [spot, blue, bowser];
+	private dogs = [spot, blue, yips];
 	private idCounter = 4;
 	
 	getDogList(): Dog[] {
