@@ -2,5 +2,6 @@
 # IntelliJ project files
 .idea
 *.iml
-out
-gen
+node_modules
+typings
+dist

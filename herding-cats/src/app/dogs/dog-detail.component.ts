@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Dog} from "./dog";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DogService} from "./dog.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {DogService} from "./dog.service";
 export class DogDetailComponent {
 	dog: Dog;
 	
-	constructor(private route: ActivatedRoute, private service: DogService) {
+	constructor(private route: ActivatedRoute, private service: DogService, private router: Router) {
 		let id: number = parseInt(route.snapshot.params["id"]);
 		if ( isNaN(id) )
 			return;
@@ -24,5 +24,9 @@ export class DogDetailComponent {
 	
 	selectFavourite() {
 		this.service.favouriteDog = this.dog;
+	}
+	
+	edit () {
+		this.router.navigate(['dogs', this.dog.id, 'edit'])
 	}
 }

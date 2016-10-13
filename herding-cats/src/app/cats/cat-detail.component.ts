@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Cat} from "./cat";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CatService} from "./cat.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {CatService} from "./cat.service";
 export class CatDetailComponent {
   	cat: Cat;
   
-	constructor(private route: ActivatedRoute, private service: CatService) {
+	constructor(private route: ActivatedRoute, private service: CatService, private router: Router) {
 		let id: number = parseInt(route.snapshot.params["id"]);
 		if ( isNaN(id) )
 			return;
@@ -25,4 +25,8 @@ export class CatDetailComponent {
   	selectFavourite() {
     	this.service.favouriteCat = this.cat;
   	}
+	
+	edit () {
+		this.router.navigate(['cats', this.cat.id, 'edit'])
+	}
 }

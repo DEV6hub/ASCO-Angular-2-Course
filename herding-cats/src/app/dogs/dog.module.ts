@@ -5,11 +5,12 @@ import {DogDetailComponent} from "./dog-detail.component";
 import {DogYearsPipe} from "./dog-years.pipe";
 import {DogsComponent} from "./dogs.component";
 import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
+import {DogFormComponent} from "./dog-form.component";
 
 @NgModule({
-	imports: [CommonModule, RouterModule, dogRouting],
-	declarations: [DogListComponent, DogDetailComponent, DogYearsPipe, DogsComponent]
+	imports: [CommonModule, ReactiveFormsModule, dogRouting],
+	declarations: [DogListComponent, DogDetailComponent, DogFormComponent, DogYearsPipe, DogsComponent]
 })
 
 export class DogModule {}
