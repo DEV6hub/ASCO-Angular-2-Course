@@ -8,7 +8,7 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
-	imports: [CommonModule, RouterModule, dogRouting],
+	imports: [CommonModule, dogRouting],
 	declarations: [DogListComponent, DogDetailComponent, DogYearsPipe, DogsComponent]
 })
 
