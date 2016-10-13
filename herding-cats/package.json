@@ -22,9 +22,11 @@
     "webdriver:update": "webdriver-manager update",
     "prewebdriver:start": "webdriver-manager update",
     "webdriver:start": "webdriver-manager start",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "api-server": "node server/server.js"
   },
   "devDependencies": {
+    "angular2-router-loader": "0.3.2",
     "chai": "3.5.0",
     "copy-webpack-plugin": "3.0.1",
     "css-loader": "^0.23.1",
