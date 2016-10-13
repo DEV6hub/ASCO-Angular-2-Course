@@ -3,6 +3,6 @@
 .idea
 *.iml
 node_modules
-typings
 dist
 docs
+typings
