@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Cat } from './cat';
+import {Observable} from "rxjs";
 
 const matilda = new Cat('Matilda', 'Calico', 'Loves window sitting and snuggles', new Date(2016, 0, 25));
 matilda.id = 1;
@@ -14,19 +15,15 @@ fuzzy.id = 3;
 @Injectable()
 export class CatService {
 	favouriteCat: Cat = boots;
-	private cats = [matilda, boots, fuzzy];
+	private cats: Cat[] = [matilda, boots, fuzzy];
 	private idCounter: number = 4;
 	
-	getCatList(): Promise<Cat[]> {
-		return new Promise((resolve, reject) => {
-			resolve(this.cats);
-		});
+	getCatList(): Observable<Cat[]> {
+		return Observable.of(this.cats);
 	}
 	
-	getCat(id: number): Promise<Cat> {
-		return new Promise((resolve, reject) => {
-			resolve(this.cats.find(cat => cat.id === id));
-		});
+	getCat(id: number): Observable<Cat> {
+		return Observable.from(this.cats).filter(cat => cat.id == id);
 	}
 	
 	saveCat(unsavedCat: Cat): Promise<Cat> {

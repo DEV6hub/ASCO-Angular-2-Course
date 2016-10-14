@@ -1,21 +1,27 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy} from "@angular/core";
 import * as moment from "moment";
 import {Cat} from "./cat";
 import {CatService} from "./cat.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'cat-form',
   template: require('./cat-form.component.html')
 })
-export class CatFormComponent {
+export class CatFormComponent implements OnDestroy {
     cat: Cat = new Cat();
+    sub: Subscription;
   
   constructor(private route: ActivatedRoute, private catService: CatService, private router: Router) {
     let id: number = parseInt(route.snapshot.params["id"]);
-    catService.getCat(id).then((result: Cat) => {
+    this.sub = catService.getCat(id).subscribe((result: Cat) => {
       this.cat = result;
     });
+  }
+  
+  ngOnDestroy () {
+    this.sub.unsubscribe();
   }
 
   birthdayForInput(): string {
