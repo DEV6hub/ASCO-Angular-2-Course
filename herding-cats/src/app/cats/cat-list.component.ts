@@ -18,7 +18,10 @@ export class CatListComponent implements OnInit {
 	) { }
 	
 	ngOnInit(): void {
-		this.cats = this.catService.getCatList();
+		this.catService.getCatList().then((result: Cat[]) => {
+			this.cats = result;
+		});
+		
 		this.favouriteCat = this.catService.favouriteCat;
 	}
 	

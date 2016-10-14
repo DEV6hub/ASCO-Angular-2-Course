@@ -17,24 +17,30 @@ export class CatService {
 	private cats = [matilda, boots, fuzzy];
 	private idCounter: number = 4;
 	
-	getCatList(): Cat[] {
-		return this.cats;
+	getCatList(): Promise<Cat[]> {
+		return new Promise((resolve, reject) => {
+			resolve(this.cats);
+		});
 	}
 	
-	getCat(id: number): Cat {
-		return this.cats.find(cat => cat.id === id);
+	getCat(id: number): Promise<Cat> {
+		return new Promise((resolve, reject) => {
+			resolve(this.cats.find(cat => cat.id === id));
+		});
 	}
 	
-	saveCat(unsavedCat: Cat): Cat {
-		if (unsavedCat.id) {
-			let currentCat = this.cats.find(cat => cat.id === unsavedCat.id);
-			Object.assign(currentCat, unsavedCat);
-			return currentCat;
-		} else {
-			unsavedCat.id = this.idCounter++;
-			this.cats.push(unsavedCat);
-			return unsavedCat;
-		}
+	saveCat(unsavedCat: Cat): Promise<Cat> {
+		return new Promise ((resolve, reject) => {
+			if (unsavedCat.id) {
+				let currentCat = this.cats.find(cat => cat.id === unsavedCat.id);
+				Object.assign(currentCat, unsavedCat);
+				resolve(currentCat);
+			} else {
+				unsavedCat.id = this.idCounter++;
+				this.cats.push(unsavedCat);
+				resolve(unsavedCat);
+			}
+		});
 	}
 	
 	removeCat(cat: Cat) {

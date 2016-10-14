@@ -9,15 +9,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   template: require('./cat-form.component.html')
 })
 export class CatFormComponent {
-    cat: Cat;
+    cat: Cat = new Cat();
   
   constructor(private route: ActivatedRoute, private catService: CatService, private router: Router) {
     let id: number = parseInt(route.snapshot.params["id"]);
-    this.cat = catService.getCat(id);
-    
-    if (!this.cat) {
-      this.cat = new Cat();
-    }
+    catService.getCat(id).then((result: Cat) => {
+      this.cat = result;
+    });
   }
 
   birthdayForInput(): string {
@@ -29,7 +27,10 @@ export class CatFormComponent {
   }
 
   saveCat() {
-    this.cat = this.catService.saveCat(this.cat);
+    this.catService.saveCat(this.cat).then((result: Cat) => {
+      this.cat = result;
+    });
+    
     this.router.navigate(['cats']);
   }
 

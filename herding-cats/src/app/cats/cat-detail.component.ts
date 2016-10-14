@@ -15,7 +15,9 @@ export class CatDetailComponent {
 		if ( isNaN(id) )
 			return;
 		
-		this.cat = service.getCat(id);
+		service.getCat(id).then((result: Cat) => {
+			this.cat = result;
+		})
 	}
   
 	isFavourite (): boolean {
