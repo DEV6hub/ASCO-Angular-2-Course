@@ -15,13 +15,18 @@ export class CatFormComponent implements OnDestroy {
   
   constructor(private route: ActivatedRoute, private catService: CatService, private router: Router) {
     let id: number = parseInt(route.snapshot.params["id"]);
-    this.sub = catService.getCat(id).subscribe((result: Cat) => {
-      this.cat = result;
-    });
+    
+    if ( !isNaN(id) ) {
+      this.sub = catService.getCat(id).subscribe((result: Cat) => {
+        this.cat = result;
+      });
+    }
   }
   
   ngOnDestroy () {
-    this.sub.unsubscribe();
+    if ( this.sub ) {
+      this.sub.unsubscribe();
+    }
   }
 
   birthdayForInput(): string {
