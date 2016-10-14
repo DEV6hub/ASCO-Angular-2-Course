@@ -1,0 +1,9 @@
+<h3>Favourite Cat: {{favouriteCat?.name}}</h3>
+
+<ul>
+  <li *ngFor="let cat of cats" (click)="selectCat(cat)">{{cat.name}}</li>
+</ul>
+
+<button (click)="add()">Add New Cat</button>
+
+<p><a [routerLink]="'/'">Home</a></p>
