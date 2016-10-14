@@ -12,14 +12,14 @@ module.exports = {
 	},
 	
 	resolve: {
-		extensions: ["", ".js", ".ts"]
+		extensions: ["", ".ts", ".js"]
 	},
 	
 	module: {
 		loaders: [
 			{
 				test: /\.ts$/,
-				loader: "ts"
+				loaders: ["ts", "angular2-router-loader"]
 			},
 			{
 				test: /\.html$/,
