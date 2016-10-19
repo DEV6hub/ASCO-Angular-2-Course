@@ -4,4 +4,6 @@
   <li *ngFor="let dog of dogs" (click)="selectDog(dog)">{{dog.name}}</li>
 </ul>
 
-<a [routerLink]="'/'">Home</a>
+<button (click)="add()">Add New Dog</button>
+
+<p><a [routerLink]="'/'">Home</a></p>

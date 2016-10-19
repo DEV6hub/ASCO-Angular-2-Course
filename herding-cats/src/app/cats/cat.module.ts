@@ -6,10 +6,12 @@ import {CatListComponent} from "./cat-list.component";
 import {CatService} from "./cat.service";
 import {CatYearsPipe} from "./cat-years.pipe";
 import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
+import {CatFormComponent} from "./cat-form.component";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 @NgModule({
-	imports: [CommonModule, RouterModule, catRouting],
-	declarations: [CatsComponent, CatDetailComponent, CatListComponent, CatYearsPipe],
+	imports: [CommonModule, FormsModule, HttpModule, catRouting],
+	declarations: [CatsComponent, CatDetailComponent, CatListComponent, CatFormComponent, CatYearsPipe],
 	providers: [CatService],
 	exports: [CatsComponent]
 })
